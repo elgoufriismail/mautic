@@ -618,7 +618,7 @@ var Mautic = {
                 if (response.route && response.route.indexOf("ajax") == -1) {
                     //update URL in address bar
                     MauticVars.manualStateChange = false;
-                    History.pushState(null, "Mautic", response.route);
+                    History.pushState(null, "Bridges", response.route);
                 }
             } else if (response.newContent && mQuery('.modal.in').length) {
                 //assume a modal was the recipient of the information

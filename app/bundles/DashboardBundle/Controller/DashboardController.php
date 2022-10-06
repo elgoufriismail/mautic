@@ -357,7 +357,7 @@ class DashboardController extends AbstractFormController
         $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set('Content-Type', 'application/octet-stream');
-        $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
         $response->headers->set('Expires', '0');
         $response->headers->set('Cache-Control', 'must-revalidate');
         $response->headers->set('Pragma', 'public');
@@ -379,7 +379,7 @@ class DashboardController extends AbstractFormController
         $name  = implode('.', $parts);
 
         $dir  = $this->container->get('mautic.helper.paths')->getSystemPath("dashboard.$type");
-        $path = $dir.'/'.$name.'.json';
+        $path = $dir . '/' . $name . '.json';
 
         if (file_exists($path) && is_writable($path)) {
             unlink($path);
@@ -406,7 +406,7 @@ class DashboardController extends AbstractFormController
         $name  = implode('.', $parts);
 
         $dir  = $this->container->get('mautic.helper.paths')->getSystemPath("dashboard.$type");
-        $path = $dir.'/'.$name.'.json';
+        $path = $dir . '/' . $name . '.json';
 
         if (!file_exists($path) || !is_readable($path)) {
             $this->addFlash('mautic.dashboard.upload.filenotfound', [], 'error', 'validators');
@@ -507,7 +507,7 @@ class DashboardController extends AbstractFormController
             foreach ($dirDashboardFiles as $dashId => $dashboard) {
                 $dashboard = str_replace('.json', '', $dashboard);
                 $config    = json_decode(
-                    file_get_contents($directories[$type].'/'.$dirDashboardFiles[$dashId]),
+                    file_get_contents($directories[$type] . '/' . $dirDashboardFiles[$dashId]),
                     true
                 );
 
@@ -521,7 +521,8 @@ class DashboardController extends AbstractFormController
             }
 
             // Sort by name
-            uasort($tempDashboard,
+            uasort(
+                $tempDashboard,
                 function ($a, $b) {
                     return strnatcasecmp($a['name'], $b['name']);
                 }
